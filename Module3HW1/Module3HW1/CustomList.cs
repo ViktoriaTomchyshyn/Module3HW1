@@ -11,6 +11,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 namespace Module3HW1
 {
     public class CustomList<T> : BaseCustomListItem<T>, IEnumerable
+        where T : IComparable<T>
     {
         private T[] _list;
 
@@ -90,12 +91,11 @@ namespace Module3HW1
         public IEnumerable<T> Sort()
         {
             T temp;
-            var type = typeof(T);
             for (int j = 0; j <= _list.Length - 2; j++)
             {
                 for (int i = 0; i <= _list.Length - 2; i++)
                 {
-                    if (_list[i].ToString().CompareTo(_list[i + 1].ToString()) > 0)
+                    if (_list[i].CompareTo(_list[i + 1]) > 0)
                     {
                         temp = _list[i + 1];
                         _list[i + 1] = _list[i];
